@@ -9,6 +9,76 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Usplash Photos-->
+        <scene sceneID="fDw-a2-pnJ">
+            <objects>
+                <tableViewController id="r3s-EX-2uS" customClass="UnsplashSearchTableViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" id="iLv-K5-OKh">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="lkb-lp-LnQ">
+                            <rect key="frame" x="0.0" y="156" width="428" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UnsplashSearchTableViewCell" rowHeight="100" id="x2D-X5-B2o" customClass="UnsplashSearchTableViewCell" customModule="SimilarWebTest" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="428" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x2D-X5-B2o" id="haR-BT-bWY">
+                                    <rect key="frame" x="0.0" y="0.0" width="408.66666666666669" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZIb-jf-Sou">
+                                            <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ZIb-jf-Sou" secondAttribute="height" multiplier="1:1" id="t0R-0a-zZH"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8e-kG-cAS">
+                                            <rect key="frame" x="88" y="20" width="87.333333333333314" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="z8e-kG-cAS" secondAttribute="trailing" constant="20" symbolic="YES" id="0ML-uV-Gaw"/>
+                                        <constraint firstItem="ZIb-jf-Sou" firstAttribute="centerY" secondItem="haR-BT-bWY" secondAttribute="centerY" id="1Ap-Mv-Si7"/>
+                                        <constraint firstItem="z8e-kG-cAS" firstAttribute="leading" secondItem="ZIb-jf-Sou" secondAttribute="trailing" constant="8" symbolic="YES" id="V6s-B8-RPO"/>
+                                        <constraint firstItem="ZIb-jf-Sou" firstAttribute="leading" secondItem="haR-BT-bWY" secondAttribute="leading" constant="20" symbolic="YES" id="n7Q-bY-mXM"/>
+                                        <constraint firstItem="z8e-kG-cAS" firstAttribute="top" secondItem="ZIb-jf-Sou" secondAttribute="top" id="rgt-Ti-q5h"/>
+                                        <constraint firstItem="ZIb-jf-Sou" firstAttribute="top" secondItem="haR-BT-bWY" secondAttribute="top" constant="20" symbolic="YES" id="vpF-0f-Fr6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="z8e-kG-cAS" id="S0d-Wh-U6G"/>
+                                    <outlet property="unsplashImageView" destination="ZIb-jf-Sou" id="iit-lQ-QLA"/>
+                                    <segue destination="tSn-T0-j4R" kind="showDetail" identifier="showDetailsSegue" id="KwN-EZ-W7U">
+                                        <segue key="commit" inheritsFrom="parent" id="ab4-Hr-Zro"/>
+                                        <segue key="preview" inheritsFrom="commit" id="xxL-6T-g2D"/>
+                                    </segue>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="r3s-EX-2uS" id="ovM-MO-Wgw"/>
+                            <outlet property="delegate" destination="r3s-EX-2uS" id="fsB-1w-ioJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Usplash Photos" id="Rpl-IZ-8rd"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="aHo-J9-TVc">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshControlValueChanged:" destination="r3s-EX-2uS" eventType="valueChanged" id="noC-Sj-oKR"/>
+                        </connections>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CqT-SB-iAP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1105" y="-87"/>
+        </scene>
         <!--Unsplash Details-->
         <scene sceneID="9vr-n8-Rae">
             <objects>
@@ -24,7 +94,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="1129.6666666666667"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5u-jo-bVL">
-                                                <rect key="frame" x="0.0" y="-88" width="428" height="408"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="428" height="320"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pur-i6-A1s" userLabel="ProfileView">
                                                 <rect key="frame" x="0.0" y="319.99999999999994" width="428" height="809.66666666666652"/>
@@ -142,78 +212,6 @@ If you read it until here, congratulations! If you liked the post and by any cha
             </objects>
             <point key="canvasLocation" x="1104.6728971962616" y="575.37796976241907"/>
         </scene>
-        <!--Unsplash-->
-        <scene sceneID="Ubi-PT-0pB">
-            <objects>
-                <tableViewController id="PGJ-rA-09d" customClass="UnsplashSearchTableViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="JOG-CI-nx7">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UnsplashSearchTableViewCell" rowHeight="100" id="5Bk-mA-TS9" customClass="UnsplashSearchTableViewCell" customModule="SimilarWebTest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="428" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Bk-mA-TS9" id="yki-8M-9xu">
-                                    <rect key="frame" x="0.0" y="0.0" width="396.66666666666669" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h56-re-uQL">
-                                            <rect key="frame" x="20" y="20" width="60" height="60"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="h56-re-uQL" secondAttribute="height" multiplier="1:1" id="Q6m-Hc-8h9"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdU-Mb-mHK">
-                                            <rect key="frame" x="88" y="20" width="87.333333333333314" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="h56-re-uQL" firstAttribute="centerY" secondItem="yki-8M-9xu" secondAttribute="centerY" id="8Mn-aH-i2c"/>
-                                        <constraint firstItem="UdU-Mb-mHK" firstAttribute="leading" secondItem="h56-re-uQL" secondAttribute="trailing" constant="8" symbolic="YES" id="TyQ-3k-D0v"/>
-                                        <constraint firstItem="UdU-Mb-mHK" firstAttribute="top" secondItem="h56-re-uQL" secondAttribute="top" id="gx9-Sb-y4V"/>
-                                        <constraint firstItem="h56-re-uQL" firstAttribute="top" secondItem="yki-8M-9xu" secondAttribute="top" constant="20" symbolic="YES" id="j19-F2-GVr"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UdU-Mb-mHK" secondAttribute="trailing" constant="20" symbolic="YES" id="pef-sE-p7U"/>
-                                        <constraint firstItem="h56-re-uQL" firstAttribute="leading" secondItem="yki-8M-9xu" secondAttribute="leading" constant="20" symbolic="YES" id="pwN-Pb-dFv"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="descriptionLabel" destination="UdU-Mb-mHK" id="5uD-2R-XV3"/>
-                                    <outlet property="unsplashImageView" destination="h56-re-uQL" id="kYE-RC-lBd"/>
-                                    <segue destination="tSn-T0-j4R" kind="showDetail" identifier="showDetailsSegue" id="veq-Ua-lB9">
-                                        <segue key="commit" inheritsFrom="parent" id="vb4-bf-G8H"/>
-                                        <segue key="preview" inheritsFrom="commit" id="ghS-qt-MLc"/>
-                                    </segue>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="PGJ-rA-09d" id="K95-KT-V3x"/>
-                            <outlet property="delegate" destination="PGJ-rA-09d" id="5k5-GO-L4k"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Unsplash" id="huu-Nj-Y0s"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="W2B-Yw-bpi">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <attributedString key="attributedTitle">
-                            <fragment content="Loading...">
-                                <attributes>
-                                    <font key="NSFont" metaFont="toolTip"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </refreshControl>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uzg-XF-ocD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1107" y="-87"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hsA-ZJ-lzN">
             <objects>
@@ -223,7 +221,7 @@ If you read it until here, congratulations! If you liked the post and by any cha
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="PGJ-rA-09d" kind="relationship" relationship="rootViewController" id="iQs-e4-ipA"/>
+                        <segue destination="r3s-EX-2uS" kind="relationship" relationship="rootViewController" id="HSv-MG-CBQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ElQ-nO-rbk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -236,6 +234,7 @@ If you read it until here, congratulations! If you liked the post and by any cha
                 <splitViewController presentsWithGesture="NO" id="WGl-Nx-LNR" customClass="PrimarySplitViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="tSn-T0-j4R" kind="relationship" relationship="detailViewController" id="wEF-d9-4dP"/>
+                        <segue destination="cSl-r2-Xig" kind="relationship" relationship="masterViewController" id="wJt-Ne-VsO"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWn-MY-lpm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -263,7 +262,7 @@ If you read it until here, congratulations! If you liked the post and by any cha
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="veq-Ua-lB9"/>
+        <segue reference="KwN-EZ-W7U"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="secondaryLabelColor">

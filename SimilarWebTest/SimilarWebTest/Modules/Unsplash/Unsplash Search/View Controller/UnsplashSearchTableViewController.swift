@@ -6,84 +6,92 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UnsplashSearchTableViewController: UITableViewController {
     
     // MARK: - Properies
-    private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        
-        searchController.delegate = self
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.autocapitalizationType = .none
-        searchController.searchBar.delegate = self
-        
-        searchController.searchBar.scopeButtonTitles = ["latest", "oldest", "popular"]
-        
-        return searchController
+    private lazy var searchBar: UISearchBar = {
+       let searchBar = UISearchBar()
+        searchBar.placeholder = "Search"
+        searchBar.enablesReturnKeyAutomatically = false
+        searchBar.autocapitalizationType = .none
+        searchBar.delegate = self
+        return searchBar
     }()
+    private var dataController: UnsplashSearchDataController!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.searchController = searchController
+        
+        tableView.verticalScrollIndicatorInsets.top = 80
+        dataController = UnsplashSearchDataController(delegate: self)
     }
 
     // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataController.numberOfItems(in: section)
+    }
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "\(UnsplashSearchTableViewCell.self)", for: indexPath) as! UnsplashSearchTableViewCell
+        let unsplashPhoto = dataController.object(at: indexPath)
+        
+        cell.descriptionLabel.text = unsplashPhoto.description
+        DispatchQueue.global(qos: .userInteractive).async {
+            let image = UIImage(blurHash: unsplashPhoto.blurHash, size: CGSize(width: 32, height: 32))
+            DispatchQueue.main.async {
+                cell.unsplashImageView.sd_setImage(with: unsplashPhoto.urls[.small], placeholderImage: image)
+            }
+        }
+        
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return searchBar
+    }
     
     // MARK: - Table view delegate
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //
 //    }
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-// MARK: - UISearchControllerDelegate Implementation
-private typealias UnsplashSearchTableViewController_UISearchControllerDelegate = UnsplashSearchTableViewController
-extension UnsplashSearchTableViewController_UISearchControllerDelegate: UISearchControllerDelegate {
-    
-}
-
-// MARK: - UISearchResultsUpdating Implementation
-private typealias UnsplashSearchTableViewController_UISearchResultsUpdating = UnsplashSearchTableViewController
-extension UnsplashSearchTableViewController_UISearchResultsUpdating: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
         
+    }
+
+    // MARK: - IBActions
+    @IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
+        dataController.performQuery(searchText: searchBar.text ?? "")
     }
 }
 
 // MARK: - UISearchBarDelegate Implementation
 private typealias UnsplashSearchTableViewController_UISearchBarDelegate = UnsplashSearchTableViewController
 extension UnsplashSearchTableViewController_UISearchBarDelegate: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dataController.performQuery(searchText: searchBar.text ?? "")
+        searchBar.resignFirstResponder()
+    }
+}
+
+// MARK: - UISearchBarDelegate Implementation
+private typealias UnsplashSearchTableViewController_UnsplashSearchDataControllerDelegate = UnsplashSearchTableViewController
+extension UnsplashSearchTableViewController_UnsplashSearchDataControllerDelegate: UnsplashSearchDataControllerDelegate {
+    func dataControllerWillBringData(_ dataController: UnsplashSearchDataController) {
+        
+    }
     
+    func dataController(_ dataController: UnsplashSearchDataController, didFinishBringDataWithError error: Error?) {
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
+        if let error = error {
+            let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true)
+        }
+    }
 }
