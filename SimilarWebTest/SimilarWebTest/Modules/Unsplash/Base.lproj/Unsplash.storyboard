@@ -95,9 +95,21 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bfj-cJ-cKX" userLabel="Container">
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="685.66666666666663"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5u-jo-bVL" customClass="ScaledHeightImageView" customModule="SimilarWebTest" customModuleProvider="target">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqZ-0g-CZZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="428" height="320"/>
-                                            </imageView>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5u-jo-bVL" customClass="ScaledHeightImageView" customModule="SimilarWebTest" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="320"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="x5u-jo-bVL" secondAttribute="bottom" id="4Rm-Cr-Rw7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="x5u-jo-bVL" secondAttribute="trailing" id="XJD-A2-7Ai"/>
+                                                    <constraint firstItem="x5u-jo-bVL" firstAttribute="leading" secondItem="oqZ-0g-CZZ" secondAttribute="leading" id="XKq-4q-Tgv"/>
+                                                    <constraint firstItem="x5u-jo-bVL" firstAttribute="top" secondItem="oqZ-0g-CZZ" secondAttribute="top" id="co8-2L-r46"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pur-i6-A1s" userLabel="ProfileView">
                                                 <rect key="frame" x="0.0" y="320" width="428" height="365.66666666666674"/>
                                                 <subviews>
@@ -180,12 +192,12 @@
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="x5u-jo-bVL" secondAttribute="trailing" id="7c8-zT-PIj"/>
+                                            <constraint firstAttribute="trailing" secondItem="oqZ-0g-CZZ" secondAttribute="trailing" id="95r-UD-x9e"/>
                                             <constraint firstItem="Pur-i6-A1s" firstAttribute="top" secondItem="Bfj-cJ-cKX" secondAttribute="top" constant="320" id="CSz-1R-0fJ"/>
                                             <constraint firstAttribute="trailing" secondItem="Pur-i6-A1s" secondAttribute="trailing" id="Dry-y3-uMK"/>
-                                            <constraint firstItem="x5u-jo-bVL" firstAttribute="leading" secondItem="Bfj-cJ-cKX" secondAttribute="leading" id="O8z-CX-EdN"/>
                                             <constraint firstAttribute="bottom" secondItem="Pur-i6-A1s" secondAttribute="bottom" id="Pbk-t5-VMm"/>
-                                            <constraint firstItem="Pur-i6-A1s" firstAttribute="top" secondItem="x5u-jo-bVL" secondAttribute="bottom" id="fwx-o0-483"/>
+                                            <constraint firstItem="oqZ-0g-CZZ" firstAttribute="leading" secondItem="Bfj-cJ-cKX" secondAttribute="leading" id="YXW-B4-5PB"/>
+                                            <constraint firstItem="Pur-i6-A1s" firstAttribute="top" secondItem="oqZ-0g-CZZ" secondAttribute="bottom" id="jxb-yy-aip"/>
                                             <constraint firstItem="Pur-i6-A1s" firstAttribute="leading" secondItem="Bfj-cJ-cKX" secondAttribute="leading" id="ptc-xG-nO9"/>
                                         </constraints>
                                     </view>
@@ -207,8 +219,8 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TK0-rK-Ghg" secondAttribute="trailing" id="Aim-Nm-gJO"/>
                             <constraint firstItem="TK0-rK-Ghg" firstAttribute="top" secondItem="1Ro-bX-8t1" secondAttribute="top" id="F7G-j2-mvm"/>
-                            <constraint firstItem="x5u-jo-bVL" firstAttribute="top" secondItem="0i3-9h-da6" secondAttribute="top" priority="750" id="ZZO-Bw-eAC"/>
                             <constraint firstItem="TK0-rK-Ghg" firstAttribute="leading" secondItem="1Ro-bX-8t1" secondAttribute="leading" id="bfW-Vt-wFf"/>
+                            <constraint firstItem="oqZ-0g-CZZ" firstAttribute="top" secondItem="0i3-9h-da6" secondAttribute="top" priority="750" id="bt2-Is-jYf"/>
                             <constraint firstAttribute="bottom" secondItem="TK0-rK-Ghg" secondAttribute="bottom" id="xWC-Qe-4jY"/>
                         </constraints>
                     </view>
@@ -218,6 +230,7 @@
                         <outlet property="descriptionLabel" destination="ELN-Bq-HjC" id="wRO-1x-vqw"/>
                         <outlet property="likeLabel" destination="S6x-1v-jKy" id="DUO-hK-JgX"/>
                         <outlet property="photoImageView" destination="x5u-jo-bVL" id="KjT-bc-X09"/>
+                        <outlet property="scrollView" destination="TK0-rK-Ghg" id="b2f-Zo-ce5"/>
                         <outlet property="userBioLabel" destination="rt3-BS-8SM" id="dfO-PH-Faj"/>
                         <outlet property="userFullNameLabel" destination="j25-xo-QUD" id="6er-3B-FKL"/>
                         <outlet property="userProfilImageView" destination="AyW-dg-iVT" id="jLA-uF-jsM"/>
@@ -273,7 +286,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="5Js-Ih-Puk" kind="relationship" relationship="rootViewController" id="aNr-eX-tpe"/>
+                        <segue destination="5Js-Ih-Puk" kind="relationship" relationship="rootViewController" id="MrL-v7-QD2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8B-vw-3zm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -41,4 +41,11 @@ class UnsplashPhotosRequestOperation: UnsplashPagedRequestOperation<[UnsplashPho
     
     override var endpoint: String { "/photos" }
     
+    override func prepareParameters() -> [String : Any]? {
+        var parameters = super.prepareParameters() ?? [:]
+        
+        parameters["order_by"] = "popular"
+        
+        return parameters
+    }
 }

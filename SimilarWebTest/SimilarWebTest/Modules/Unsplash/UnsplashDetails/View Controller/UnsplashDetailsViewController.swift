@@ -10,6 +10,7 @@ import SDWebImage
 
 class UnsplashDetailsViewController: UIViewController, UIScrollViewDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var userProfilImageView: UIImageView!
@@ -18,19 +19,23 @@ class UnsplashDetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var userBioLabel: UILabel!
     @IBOutlet weak var constraintTopProfileView: NSLayoutConstraint!
-    var unsplashPhoto: UnsplashPhoto!
+    var unsplashPhoto: UnsplashPhoto?
     var imageDownloaded: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        photoImageView.sd_setImage(with: unsplashPhoto.urls[.regular], placeholderImage: imageDownloaded ?? UIImage(blurHash: unsplashPhoto.blurHash, size: CGSize(width: 32, height: 32)))
-        descriptionLabel.text = unsplashPhoto.description
-        userProfilImageView.sd_setImage(with: unsplashPhoto.user.profileImage[.large])
-        userFullNameLabel.text = unsplashPhoto.user.displayName
-        usernameTookPictureLabel.text = unsplashPhoto.user.username
-        likeLabel.text = "\(unsplashPhoto.likesCount) Likes"
-        userBioLabel.text = unsplashPhoto.user.bio
+        
+        if let unsplashPhoto = unsplashPhoto {
+            photoImageView.sd_setImage(with: unsplashPhoto.urls[.regular], placeholderImage: imageDownloaded ?? UIImage(blurHash: unsplashPhoto.blurHash, size: CGSize(width: 32, height: 32)))
+            descriptionLabel.text = unsplashPhoto.description
+            userProfilImageView.sd_setImage(with: unsplashPhoto.user.profileImage[.large])
+            userFullNameLabel.text = unsplashPhoto.user.displayName
+            usernameTookPictureLabel.text = unsplashPhoto.user.username
+            likeLabel.text = "\(unsplashPhoto.likesCount) Likes"
+            userBioLabel.text = unsplashPhoto.user.bio
+        } else {
+            scrollView.isHidden = true
+        }
     }
     
     override func viewDidLayoutSubviews() {
