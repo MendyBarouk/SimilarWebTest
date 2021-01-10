@@ -11,6 +11,7 @@ import ProcedureKit
 protocol UnsplashSearchDataControllerDelegate: class {
     func dataControllerWillBringData(_ dataController: UnsplashSearchDataController)
     func dataController(_ dataController: UnsplashSearchDataController, didFinishBringDataWithError error: Error?)
+    func dataControllerShouldResetSelection(_ dataController: UnsplashSearchDataController)
 }
 
 class UnsplashSearchDataController {
@@ -56,6 +57,7 @@ private extension UnsplashSearchDataController {
             if let unsplashSearch = bringJsonOperation.output.value?.value {
                 if self.currentCursor.page == self.initialCursor().page {
                     self.unsplashSearch = unsplashSearch
+                    self.delegate?.dataControllerShouldResetSelection(self)
                 } else {
                     self.unsplashSearch = UnsplashSearch(total: self.unsplashSearch.total, totalPage: self.unsplashSearch.totalPage, results: self.unsplashSearch.results + unsplashSearch.results)
                 }
@@ -81,6 +83,7 @@ private extension UnsplashSearchDataController {
             if let unsplashSearch = bringJsonOperation.output.value?.value {
                 if self.currentCursor.page == self.initialCursor().page {
                     self.unsplashSearch = UnsplashSearch(total: 0, totalPage: 0, results: unsplashSearch)
+                    self.delegate?.dataControllerShouldResetSelection(self)
                 } else {
                     self.unsplashSearch = UnsplashSearch(total: self.unsplashSearch.total, totalPage: self.unsplashSearch.totalPage, results: self.unsplashSearch.results + unsplashSearch)
                 }

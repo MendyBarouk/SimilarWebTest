@@ -100,7 +100,6 @@ extension UnsplashSearchTableViewController_UITableViewDataSourcePrefetching: UI
 private typealias UnsplashSearchTableViewController_UISearchBarDelegate = UnsplashSearchTableViewController
 extension UnsplashSearchTableViewController_UISearchBarDelegate: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        tableView.setContentOffset(.zero, animated: false)
         dataController.performQuery(searchText: searchBar.text)
         searchBar.resignFirstResponder()
     }
@@ -114,7 +113,11 @@ extension UnsplashSearchTableViewController_UnsplashSearchDataControllerDelegate
     }
     
     func dataController(_ dataController: UnsplashSearchDataController, didFinishBringDataWithError error: Error?) {
+        let indexPathForSelectedRow = tableView.indexPathForSelectedRow
         tableView.reloadData()
+        if let indexPathForSelectedRow = indexPathForSelectedRow {
+            tableView.selectRow(at: indexPathForSelectedRow, animated: false, scrollPosition: .none)
+        }
         refreshControl?.endRefreshing()
         activityIndicator.stopAnimating()
         if let error = error {
@@ -122,6 +125,15 @@ extension UnsplashSearchTableViewController_UnsplashSearchDataControllerDelegate
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             present(alertController, animated: true)
+        }
+    }
+    
+    func dataControllerShouldResetSelection(_ dataController: UnsplashSearchDataController) {
+        splitViewController?.viewControllers[1] = storyboard!.instantiateViewController(withIdentifier: "DetailNavigationViewController")
+        let desiredOffset = CGPoint(x: 0, y: -(tableView.contentInset.top + navigationController!.navigationBar.frame.height + CGFloat(60)))
+        tableView.setContentOffset(desiredOffset, animated: true)
+        if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPathForSelectedRow, animated: false)
         }
     }
 }

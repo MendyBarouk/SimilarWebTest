@@ -98,7 +98,7 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqZ-0g-CZZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="428" height="320"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5u-jo-bVL" customClass="ScaledHeightImageView" customModule="SimilarWebTest" customModuleProvider="target">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5u-jo-bVL">
                                                         <rect key="frame" x="0.0" y="0.0" width="428" height="320"/>
                                                     </imageView>
                                                 </subviews>
@@ -274,7 +274,7 @@
         <!--Navigation Controller-->
         <scene sceneID="plz-He-Ixy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tSn-T0-j4R" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="DetailNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="tSn-T0-j4R" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="jMQ-Fb-GPl">
                         <barButtonItem key="backBarButtonItem" title=" " id="kOS-cO-9A3"/>
@@ -295,7 +295,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KwN-EZ-W7U"/>
+        <segue reference="wEF-d9-4dP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
