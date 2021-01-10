@@ -30,7 +30,7 @@ class UnsplashSearchTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.verticalScrollIndicatorInsets.top = 80
+        tableView.verticalScrollIndicatorInsets.top = 60
         tableView.prefetchDataSource = self
         dataController = UnsplashSearchDataController(delegate: self)
         dataController.performQuery(searchText: nil)

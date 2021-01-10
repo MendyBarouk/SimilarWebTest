@@ -43,6 +43,12 @@ class UnsplashSearchDataController {
 private extension UnsplashSearchDataController {
     func fetchSearchPhotos(with searchText: String) {
         let bringJsonOperation = BringJsonOperation(requestOperation: UnsplashPhotosSearchRequestOperation(query: searchText, cursor: currentCursor))
+        bringJsonOperation.addWillExecuteBlockObserver(synchronizedWith: DispatchQueue.main) { [weak self] (_, event) in
+            event.doBeforeEvent {
+                guard let self = self else { return }
+                self.delegate?.dataControllerWillBringData(self)
+            }
+        }
         bringJsonOperation.addDidFinishBlockObserver(synchronizedWith: DispatchQueue.main) { [weak self] (bringJsonOperation, error) in
             guard let self = self else { return }
             guard !bringJsonOperation.isCancelled else { return }
@@ -62,6 +68,12 @@ private extension UnsplashSearchDataController {
     
     func fetchPopularPhotos() {
         let bringJsonOperation = BringJsonOperation(requestOperation: UnsplashPhotosRequestOperation(with: currentCursor))
+        bringJsonOperation.addWillExecuteBlockObserver(synchronizedWith: DispatchQueue.main) { [weak self] (_, event) in
+            event.doBeforeEvent {
+                guard let self = self else { return }
+                self.delegate?.dataControllerWillBringData(self)
+            }
+        }
         bringJsonOperation.addDidFinishBlockObserver(synchronizedWith: DispatchQueue.main) { [weak self] (bringJsonOperation, error) in
             guard let self = self else { return }
             guard !bringJsonOperation.isCancelled else { return }
