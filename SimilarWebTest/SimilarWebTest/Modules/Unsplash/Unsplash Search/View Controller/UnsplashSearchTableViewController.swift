@@ -64,17 +64,14 @@ class UnsplashSearchTableViewController: UITableViewController {
         return activityIndicator
     }
     
-    // MARK: - Table view delegate
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let navigationController = segue.destination as? UINavigationController else { return }
-        guard let unsplashDetailsViewController = navigationController.topViewController as? UnsplashDetailsViewController else { return }
+        guard let unsplashDetailsPageViewController = navigationController.topViewController as? UnsplashDetailsPageViewController else { return }
         guard let unsplashSearchTVC = sender as? UnsplashSearchTableViewCell else { return }
         guard let indexPath = tableView.indexPath(for: unsplashSearchTVC) else { return }
-        unsplashDetailsViewController.bindData(with: dataController.object(at: indexPath), imageAlreadyDownloaded: unsplashSearchTVC.unsplashImageView.image)
+        dataController.didSelect(at: indexPath)
+        unsplashDetailsPageViewController.bindData(dataController)
     }
 
     // MARK: - IBActions
@@ -135,5 +132,9 @@ extension UnsplashSearchTableViewController_UnsplashSearchDataControllerDelegate
         if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPathForSelectedRow, animated: false)
         }
+    }
+    
+    func dataController(_ dataController: UnsplashSearchDataController, didSelectObjectAtIndexPath indexPath: IndexPath) {
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
     }
 }

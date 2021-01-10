@@ -12,12 +12,14 @@ protocol UnsplashSearchDataControllerDelegate: class {
     func dataControllerWillBringData(_ dataController: UnsplashSearchDataController)
     func dataController(_ dataController: UnsplashSearchDataController, didFinishBringDataWithError error: Error?)
     func dataControllerShouldResetSelection(_ dataController: UnsplashSearchDataController)
+    func dataController(_ dataController: UnsplashSearchDataController, didSelectObjectAtIndexPath indexPath: IndexPath)
 }
 
 class UnsplashSearchDataController {
     private lazy var currentCursor = self.initialCursor()
     private var searchText: String?
     private var unsplashSearch: UnsplashSearch<UnsplashPhoto> = UnsplashSearch(total: 0, totalPage: 0, results: [])
+    private var selectedIndexPath: IndexPath?
     private let queue = ProcedureQueue()
     private weak var delegate: UnsplashSearchDataControllerDelegate?
     
@@ -56,8 +58,7 @@ private extension UnsplashSearchDataController {
             
             if let unsplashSearch = bringJsonOperation.output.value?.value {
                 if self.currentCursor.page == self.initialCursor().page {
-                    self.unsplashSearch = unsplashSearch
-                    self.delegate?.dataControllerShouldResetSelection(self)
+                    self.initiateUnsplashSearch(with: unsplashSearch)
                 } else {
                     self.unsplashSearch = UnsplashSearch(total: self.unsplashSearch.total, totalPage: self.unsplashSearch.totalPage, results: self.unsplashSearch.results + unsplashSearch.results)
                 }
@@ -80,12 +81,11 @@ private extension UnsplashSearchDataController {
             guard let self = self else { return }
             guard !bringJsonOperation.isCancelled else { return }
             
-            if let unsplashSearch = bringJsonOperation.output.value?.value {
+            if let unsplashPhotos = bringJsonOperation.output.value?.value {
                 if self.currentCursor.page == self.initialCursor().page {
-                    self.unsplashSearch = UnsplashSearch(total: 0, totalPage: 0, results: unsplashSearch)
-                    self.delegate?.dataControllerShouldResetSelection(self)
+                    self.initiateUnsplashSearch(with: UnsplashSearch(total: 0, totalPage: 0, results: unsplashPhotos))
                 } else {
-                    self.unsplashSearch = UnsplashSearch(total: self.unsplashSearch.total, totalPage: self.unsplashSearch.totalPage, results: self.unsplashSearch.results + unsplashSearch)
+                    self.unsplashSearch = UnsplashSearch(total: self.unsplashSearch.total, totalPage: self.unsplashSearch.totalPage, results: self.unsplashSearch.results + unsplashPhotos)
                 }
             }
             self.delegate?.dataController(self, didFinishBringDataWithError: bringJsonOperation.output.error)
@@ -102,11 +102,35 @@ private extension UnsplashSearchDataController {
             fetchPopularPhotos()
         }
     }
+    
+    func initiateUnsplashSearch(with unsplashSearch: UnsplashSearch<UnsplashPhoto>) {
+        let isShouldReset: Bool
+        if let selectedIndexPath = selectedIndexPath,
+           self.unsplashSearch.results.indices.contains(selectedIndexPath.row),
+           unsplashSearch.results.indices.contains(selectedIndexPath.row) {
+            
+            isShouldReset = unsplashSearch.results[selectedIndexPath.row] != self.unsplashSearch.results[selectedIndexPath.row]
+        } else {
+            isShouldReset = true
+        }
+        self.unsplashSearch = unsplashSearch
+        if isShouldReset {
+            self.selectedIndexPath = nil
+            self.delegate?.dataControllerShouldResetSelection(self)
+        }
+    }
+    
     func initialCursor() -> UnsplashPagedCursor {
         return UnsplashPagedCursor(page: 1)
     }
+    
     func nextCursor() -> UnsplashPagedCursor {
         return UnsplashPagedCursor(page: currentCursor.page + 1)
+    }
+    
+    func findIndexPath(from object: Object) -> IndexPath? {
+        guard let index = unsplashSearch.results.firstIndex(of: object) else { return nil }
+        return IndexPath(row: index, section: 0)
     }
 }
 
@@ -117,7 +141,39 @@ extension UnsplashSearchDataController: ReusableDataController {
     }
     
     func object(at indexPath: IndexPath) -> UnsplashPhoto {
-        precondition(0..<unsplashSearch.results.count ~= indexPath.row)
+        precondition(unsplashSearch.results.indices.contains(indexPath.row))
         return unsplashSearch.results[indexPath.row]
+    }
+    
+    func didSelect(at indexPath: IndexPath) {
+        precondition(unsplashSearch.results.indices.contains(indexPath.row))
+        selectedIndexPath = indexPath
+    }
+}
+
+extension UnsplashSearchDataController: PagerDataController {
+    func currentObject() -> UnsplashPhoto {
+        precondition(selectedIndexPath != nil)
+        return object(at: selectedIndexPath!)
+    }
+    
+    func previousObject() -> UnsplashPhoto? {
+        guard let selectedIndexPath = selectedIndexPath else { return nil }
+        let previousIndexPath = IndexPath(row: selectedIndexPath.row - 1, section: selectedIndexPath.section)
+        guard 0..<unsplashSearch.results.count ~= previousIndexPath.row else { return nil}
+        return object(at: previousIndexPath)
+    }
+    
+    func nextObject() -> UnsplashPhoto? {
+        guard let selectedIndexPath = selectedIndexPath else { return nil }
+        let nextIndexPath = IndexPath(row: selectedIndexPath.row + 1, section: selectedIndexPath.section)
+        guard 0..<unsplashSearch.results.count ~= nextIndexPath.row else { return nil}
+        return object(at: nextIndexPath)
+    }
+    
+    func didSelect(object: UnsplashPhoto) {
+        guard let selectedIndexPath = findIndexPath(from: object) else { return }
+        self.selectedIndexPath = selectedIndexPath
+        delegate?.dataController(self, didSelectObjectAtIndexPath: selectedIndexPath)
     }
 }

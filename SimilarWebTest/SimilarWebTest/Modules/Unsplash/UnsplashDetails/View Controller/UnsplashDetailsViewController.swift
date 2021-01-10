@@ -20,13 +20,13 @@ class UnsplashDetailsViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var userBioLabel: UILabel!
     @IBOutlet weak var constraintTopProfileView: NSLayoutConstraint!
     var unsplashPhoto: UnsplashPhoto?
-    var imageDownloaded: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let unsplashPhoto = unsplashPhoto {
-            photoImageView.sd_setImage(with: unsplashPhoto.urls[.regular], placeholderImage: imageDownloaded ?? UIImage(blurHash: unsplashPhoto.blurHash, size: CGSize(width: 32, height: 32)))
+            photoImageView.sd_setImage(with: unsplashPhoto.urls[.small]) // from cache
+            photoImageView.sd_setImage(with: unsplashPhoto.urls[.regular])
             descriptionLabel.text = unsplashPhoto.description
             userProfilImageView.sd_setImage(with: unsplashPhoto.user.profileImage[.large])
             userFullNameLabel.text = unsplashPhoto.user.displayName
@@ -51,8 +51,7 @@ class UnsplashDetailsViewController: UIViewController, UIScrollViewDelegate {
 }
 
 extension UnsplashDetailsViewController {
-    func bindData(with unsplashPhoto: UnsplashPhoto, imageAlreadyDownloaded: UIImage?) {
+    func bindData(with unsplashPhoto: UnsplashPhoto) {
         self.unsplashPhoto = unsplashPhoto
-        self.imageDownloaded = imageAlreadyDownloaded
     }
 }

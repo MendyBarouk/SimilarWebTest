@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct UnsplashPhoto: Codable {
+struct UnsplashPhoto: Codable, Equatable {
+    
+    static func == (lhs: UnsplashPhoto, rhs: UnsplashPhoto) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
     
     enum URLKind: String, Codable {
         case raw

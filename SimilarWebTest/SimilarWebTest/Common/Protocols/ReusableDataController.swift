@@ -11,4 +11,5 @@ protocol ReusableDataController {
     associatedtype Object
     func numberOfItems(in section: Int) -> Int
     func object(at indexPath: IndexPath) -> Object
+    func didSelect(at indexPath: IndexPath)
 }

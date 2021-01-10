@@ -84,7 +84,7 @@
         <!--Unsplash Details-->
         <scene sceneID="9vr-n8-Rae">
             <objects>
-                <viewController id="5Js-Ih-Puk" customClass="UnsplashDetailsViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UnsplashDetailsViewController" id="5Js-Ih-Puk" customClass="UnsplashDetailsViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ro-bX-8t1">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSB-iX-6YT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1104.6728971962616" y="575.37796976241907"/>
+            <point key="canvasLocation" x="2006" y="575"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hsA-ZJ-lzN">
@@ -286,12 +286,22 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="5Js-Ih-Puk" kind="relationship" relationship="rootViewController" id="MrL-v7-QD2"/>
+                        <segue destination="Vok-bk-zLQ" kind="relationship" relationship="rootViewController" id="DEl-kd-hSH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8B-vw-3zm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="219" y="576"/>
+        </scene>
+        <!--Unsplash Details Page View Controller-->
+        <scene sceneID="eKu-7N-6JQ">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Vok-bk-zLQ" customClass="UnsplashDetailsPageViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="rxX-I5-tVE"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cKe-lZ-K7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1105" y="585"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
