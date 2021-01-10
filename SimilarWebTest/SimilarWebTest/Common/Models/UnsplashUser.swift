@@ -56,3 +56,20 @@ struct UnsplashUser: Codable {
         try container.encode(bio, forKey: .bio)
     }
 }
+
+extension UnsplashUser {
+    var displayName: String {
+        if let name = name {
+            return name
+        }
+
+        if let firstName = firstName {
+            if let lastName = lastName {
+                return "\(firstName) \(lastName)"
+            }
+            return firstName
+        }
+
+        return username
+    }
+}

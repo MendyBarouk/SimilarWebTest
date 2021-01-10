@@ -19,8 +19,8 @@ struct UnsplashPagedCursor {
 
 class UnsplashPagedRequestOperation<T:Decodable>: UnsplashRequestOperation<T> {
     
-    
     private let cursor: UnsplashPagedCursor
+    
     init(with cursor: UnsplashPagedCursor, configuration: UnsplashAPIConfiguration = UnsplashAPIConfiguration()) {
         self.cursor = cursor
         super.init(configuration: configuration)
@@ -34,4 +34,11 @@ class UnsplashPagedRequestOperation<T:Decodable>: UnsplashRequestOperation<T> {
         
         return parameters
     }
+}
+
+
+class UnsplashPhotosRequestOperation: UnsplashPagedRequestOperation<[UnsplashPhoto]> {
+    
+    override var endpoint: String { "/photos" }
+    
 }

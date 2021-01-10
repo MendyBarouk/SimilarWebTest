@@ -6,32 +6,48 @@
 //
 
 import UIKit
+import SDWebImage
 
-class UnsplashDetailsViewController: UIViewController {
+class UnsplashDetailsViewController: UIViewController, UIScrollViewDelegate {
     
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var userProfilImageView: UIImageView!
+    @IBOutlet weak var userFullNameLabel: UILabel!
+    @IBOutlet weak var usernameTookPictureLabel: UILabel!
+    @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var userBioLabel: UILabel!
+    @IBOutlet weak var constraintTopProfileView: NSLayoutConstraint!
     var unsplashPhoto: UnsplashPhoto!
+    var imageDownloaded: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        photoImageView.sd_setImage(with: unsplashPhoto.urls[.regular], placeholderImage: imageDownloaded ?? UIImage(blurHash: unsplashPhoto.blurHash, size: CGSize(width: 32, height: 32)))
+        descriptionLabel.text = unsplashPhoto.description
+        userProfilImageView.sd_setImage(with: unsplashPhoto.user.profileImage[.large])
+        userFullNameLabel.text = unsplashPhoto.user.displayName
+        usernameTookPictureLabel.text = unsplashPhoto.user.username
+        likeLabel.text = "\(unsplashPhoto.likesCount) Likes"
+        userBioLabel.text = unsplashPhoto.user.bio
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        adjusteParallaxViewHeight()
     }
-    */
-
+    
+    private func adjusteParallaxViewHeight() {
+        let idealHeightForHeaderView = photoImageView.image?.getHeightKeepingRatioByWidth(photoImageView.frame.width)
+        constraintTopProfileView.constant = min(idealHeightForHeaderView ?? view.frame.midY, view.frame.midY)
+    }
 }
 
 extension UnsplashDetailsViewController {
-    func bindData(with unsplashPhoto: UnsplashPhoto) {
+    func bindData(with unsplashPhoto: UnsplashPhoto, imageAlreadyDownloaded: UIImage?) {
         self.unsplashPhoto = unsplashPhoto
+        self.imageDownloaded = imageAlreadyDownloaded
     }
 }

@@ -22,7 +22,7 @@ struct UnsplashPhoto: Codable {
     let width      : Int
     let user       : UnsplashUser
     let urls       : [URLKind: URL]
-    let blurHash   : String
+    let blurHash   : String?
     let description: String?
     let likesCount : Int
     
@@ -45,7 +45,7 @@ struct UnsplashPhoto: Codable {
         width       = try container.decode(Int.self, forKey: .width)
         user        = try container.decode(UnsplashUser.self, forKey: .user)
         urls        = try container.decode([URLKind: URL].self, forKey: .urls)
-        blurHash    = try container.decode(String.self, forKey: .blurHash)
+        blurHash    = try container.decode(String?.self, forKey: .blurHash)
         description = try container.decode(String?.self, forKey: .description)
         likesCount  = try container.decode(Int.self, forKey: .likesCount)
     }

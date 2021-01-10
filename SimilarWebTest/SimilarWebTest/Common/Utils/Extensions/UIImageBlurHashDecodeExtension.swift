@@ -8,7 +8,8 @@
 import UIKit
 
 extension UIImage {
-    public convenience init?(blurHash: String, size: CGSize, punch: Float = 1) {
+    public convenience init?(blurHash: String?, size: CGSize, punch: Float = 1) {
+        guard let blurHash = blurHash else { return nil }
         guard blurHash.count >= 6 else { return nil }
 
         let sizeFlag = String(blurHash[0]).decode83()

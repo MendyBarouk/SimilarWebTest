@@ -25,9 +25,9 @@
 		966C1D6525AA330C00555623 /* UnsplashPagedRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C1D6425AA330C00555623 /* UnsplashPagedRequestOperation.swift */; };
 		966C1D6825AA35E300555623 /* UnsplashPhotosSearchRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C1D6725AA35E300555623 /* UnsplashPhotosSearchRequestOperation.swift */; };
 		966C1D6B25AA4DD600555623 /* UIImageBlurHashDecodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C1D6A25AA4DD600555623 /* UIImageBlurHashDecodeExtension.swift */; };
-		966C1D8C25AA594100555623 /* ExpandedNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C1D8B25AA594100555623 /* ExpandedNavigationTitleView.swift */; };
 		966C1D9525AA62DE00555623 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 966C1D9425AA62DE00555623 /* SDWebImage */; };
 		966C1D9A25AA668000555623 /* UnsplashDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C1D9925AA668000555623 /* UnsplashDetailsViewController.swift */; };
+		966C1DCC25AAFBA800555623 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966C1DCB25AAFBA800555623 /* UIImageExtension.swift */; };
 		969E898625A79A560072AC15 /* UnsplashSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969E898525A79A560072AC15 /* UnsplashSearchTableViewController.swift */; };
 		969E898925A79E0A0072AC15 /* PrimarySplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969E898825A79E0A0072AC15 /* PrimarySplitViewController.swift */; };
 		96F93D2925A78CE4005DB503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F93D2825A78CE4005DB503 /* AppDelegate.swift */; };
@@ -54,8 +54,8 @@
 		966C1D6425AA330C00555623 /* UnsplashPagedRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPagedRequestOperation.swift; sourceTree = "<group>"; };
 		966C1D6725AA35E300555623 /* UnsplashPhotosSearchRequestOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhotosSearchRequestOperation.swift; sourceTree = "<group>"; };
 		966C1D6A25AA4DD600555623 /* UIImageBlurHashDecodeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageBlurHashDecodeExtension.swift; sourceTree = "<group>"; };
-		966C1D8B25AA594100555623 /* ExpandedNavigationTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedNavigationTitleView.swift; sourceTree = "<group>"; };
 		966C1D9925AA668000555623 /* UnsplashDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashDetailsViewController.swift; sourceTree = "<group>"; };
+		966C1DCB25AAFBA800555623 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		969E898525A79A560072AC15 /* UnsplashSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashSearchTableViewController.swift; sourceTree = "<group>"; };
 		969E898825A79E0A0072AC15 /* PrimarySplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimarySplitViewController.swift; sourceTree = "<group>"; };
 		96F93D2525A78CE4005DB503 /* SimilarWebTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimilarWebTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				966C1D3225A8824800555623 /* Extensions */,
-				966C1D8B25AA594100555623 /* ExpandedNavigationTitleView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -154,6 +153,7 @@
 				966C1D3325A8826E00555623 /* DictionaryExtension.swift */,
 				966C1D3725A8829D00555623 /* KeyedDecodingContainerExtension.swift */,
 				966C1D6A25AA4DD600555623 /* UIImageBlurHashDecodeExtension.swift */,
+				966C1DCB25AAFBA800555623 /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,13 +378,13 @@
 				96F93D2B25A78CE4005DB503 /* SceneDelegate.swift in Sources */,
 				966C1D5D25AA2C4900555623 /* UnsplashRequestOperation.swift in Sources */,
 				966C1D2C25A87D7000555623 /* UnsplashPhoto.swift in Sources */,
-				966C1D8C25AA594100555623 /* ExpandedNavigationTitleView.swift in Sources */,
 				966C1D4F25A89BCC00555623 /* UnsplashSearch.swift in Sources */,
 				966C1D6B25AA4DD600555623 /* UIImageBlurHashDecodeExtension.swift in Sources */,
 				969E898625A79A560072AC15 /* UnsplashSearchTableViewController.swift in Sources */,
 				966C1D6525AA330C00555623 /* UnsplashPagedRequestOperation.swift in Sources */,
 				966C1D3825A8829D00555623 /* KeyedDecodingContainerExtension.swift in Sources */,
 				966C1D6825AA35E300555623 /* UnsplashPhotosSearchRequestOperation.swift in Sources */,
+				966C1DCC25AAFBA800555623 /* UIImageExtension.swift in Sources */,
 				966C1D4B25A8915D00555623 /* BringJsonOperation.swift in Sources */,
 				966C1D9A25AA668000555623 /* UnsplashDetailsViewController.swift in Sources */,
 				966C1D5425AA21FA00555623 /* UnsplashAPIConfiguration.swift in Sources */,

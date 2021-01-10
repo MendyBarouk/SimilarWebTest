@@ -23,6 +23,7 @@ class UnsplashPhotosSearchRequestOperation: UnsplashSearchRequestOperation<Unspl
         var parameters = super.prepareParameters() ?? [:]
         
         parameters["order_by"] = orderBy.rawValue
+        parameters["orientation"] = "landscape"
         
         return parameters
     }

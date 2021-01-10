@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +14,7 @@
         <scene sceneID="fDw-a2-pnJ">
             <objects>
                 <tableViewController id="r3s-EX-2uS" customClass="UnsplashSearchTableViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="28" id="iLv-K5-OKh">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="80" sectionFooterHeight="40" id="iLv-K5-OKh">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="lkb-lp-LnQ">
@@ -69,6 +70,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Usplash Photos" id="Rpl-IZ-8rd"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="aHo-J9-TVc">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="refreshControlValueChanged:" destination="r3s-EX-2uS" eventType="valueChanged" id="noC-Sj-oKR"/>
@@ -82,7 +84,7 @@
         <!--Unsplash Details-->
         <scene sceneID="9vr-n8-Rae">
             <objects>
-                <viewController id="5Js-Ih-Puk" sceneMemberID="viewController">
+                <viewController id="5Js-Ih-Puk" customClass="UnsplashDetailsViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ro-bX-8t1">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,16 +93,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bfj-cJ-cKX" userLabel="Container">
-                                        <rect key="frame" x="0.0" y="0.0" width="428" height="1129.6666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="428" height="685.66666666666663"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5u-jo-bVL">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x5u-jo-bVL" customClass="ScaledHeightImageView" customModule="SimilarWebTest" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="428" height="320"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pur-i6-A1s" userLabel="ProfileView">
-                                                <rect key="frame" x="0.0" y="319.99999999999994" width="428" height="809.66666666666652"/>
+                                                <rect key="frame" x="0.0" y="320" width="428" height="365.66666666666674"/>
                                                 <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELN-Bq-HjC">
+                                                        <rect key="frame" x="172.33333333333334" y="0.0" width="83.333333333333343" height="19.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bj8-ay-pwu" userLabel="HeaderView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="428" height="100"/>
+                                                        <rect key="frame" x="0.0" y="19.333333333333314" width="428" height="100"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AyW-dg-iVT">
                                                                 <rect key="frame" x="20" y="16" width="68" height="68"/>
@@ -108,8 +116,8 @@
                                                                     <constraint firstAttribute="width" secondItem="AyW-dg-iVT" secondAttribute="height" multiplier="1:1" id="3hA-O6-B8v"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3ZP-dm-aRK">
-                                                                <rect key="frame" x="114" y="29.666666666666682" width="294" height="40.666666666666657"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3ZP-dm-aRK">
+                                                                <rect key="frame" x="114" y="14" width="294" height="72.333333333333329"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aline K. Borges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j25-xo-QUD">
                                                                         <rect key="frame" x="0.0" y="0.0" width="294" height="20.333333333333332"/>
@@ -118,9 +126,15 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="São Paulo - Brazil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjl-lf-CMm">
-                                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="294" height="20.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="28.333333333333371" width="294" height="20.333333333333329"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6x-1v-jKy">
+                                                                        <rect key="frame" x="0.0" y="56.666666666666679" width="294" height="15.666666666666664"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <color key="textColor" systemColor="systemGray2Color"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -138,23 +152,11 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cxC-lv-FLQ">
-                                                        <rect key="frame" x="22" y="120" width="384" height="673.66666666666663"/>
+                                                        <rect key="frame" x="22" y="139.33333333333331" width="384" height="210.33333333333331"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAd-WO-iay">
-                                                                <rect key="frame" x="0.0" y="0.0" width="384" height="19.333333333333332"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rt3-BS-8SM">
-                                                                <rect key="frame" x="0.0" y="24.333333333333314" width="384" height="649.33333333333348"/>
-                                                                <string key="text">This is a pretty good example why we should start thinking about the simplest of things first, before complicating. I mean, if constraints use mathematical equations to place each component of the view on the screen at each time, that means that, by using some logic and a bit of knowledge of how they work, we can leverage their power to the maximum. I’m the first person in the world to try to simplify things as we can. Premature optimisation is the root of all problems.
-
-This photo was taken at my first week in Sao Paulo, after I moved there. It was an amazing sunset, and the view from the temporary apartment I was staying was pretty amazing, as you can see.
-
-By this point, I’m just trying to create a very very long text enough to get this to scroll down. I could write a song here, or maybe some 3 minute noodles recipe. You should warm the water before and, when it’s boiling, just open the package and put the noodles in. Don’t put too much water. If you put just the right amount, you can open the flavour package and put it to cook with the noodles itself. It’s probably psychological, but I think the noodles take a little bit of the flavour, it’s not just on the water. If you want to increment it a little bit, put some carrots and peas, it will taste better.
-
-If you read it until here, congratulations! If you liked the post and by any chance are in the same city as I am sometime, I would love a beer (or a tea, I don’t drink coffee). If you’d like to talk to me, just send me a message, I would love to talk to you :) </string>
+                                                                <rect key="frame" x="0.0" y="0.0" width="384" height="210.33333333333334"/>
+                                                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -162,10 +164,14 @@ If you read it until here, congratulations! If you liked the post and by any cha
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="Bj8-ay-pwu" firstAttribute="leading" secondItem="Pur-i6-A1s" secondAttribute="leading" id="21d-nI-2TI"/>
-                                                    <constraint firstItem="Bj8-ay-pwu" firstAttribute="top" secondItem="Pur-i6-A1s" secondAttribute="top" id="D3S-tC-aEX"/>
+                                                    <constraint firstItem="ELN-Bq-HjC" firstAttribute="top" secondItem="Pur-i6-A1s" secondAttribute="top" id="4PC-0U-Wh9"/>
+                                                    <constraint firstItem="ELN-Bq-HjC" firstAttribute="centerX" secondItem="Pur-i6-A1s" secondAttribute="centerX" id="8Be-41-IAK"/>
+                                                    <constraint firstItem="ELN-Bq-HjC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Pur-i6-A1s" secondAttribute="leading" constant="20" symbolic="YES" id="Ebw-yk-xHZ"/>
                                                     <constraint firstItem="cxC-lv-FLQ" firstAttribute="leading" secondItem="Pur-i6-A1s" secondAttribute="leading" constant="22" id="UtF-mD-php"/>
+                                                    <constraint firstItem="Bj8-ay-pwu" firstAttribute="top" secondItem="ELN-Bq-HjC" secondAttribute="bottom" id="at0-ds-5JD"/>
                                                     <constraint firstItem="cxC-lv-FLQ" firstAttribute="top" secondItem="Bj8-ay-pwu" secondAttribute="bottom" constant="20" id="g0z-u8-C35"/>
                                                     <constraint firstAttribute="trailing" secondItem="Bj8-ay-pwu" secondAttribute="trailing" id="h5w-1O-Rld"/>
                                                     <constraint firstAttribute="bottom" secondItem="cxC-lv-FLQ" secondAttribute="bottom" constant="16" id="sEK-Sz-muG"/>
@@ -188,7 +194,6 @@ If you read it until here, congratulations! If you liked the post and by any cha
                                     <constraint firstItem="Bfj-cJ-cKX" firstAttribute="width" secondItem="IhD-ZU-OfZ" secondAttribute="width" id="2Fn-cO-mVh"/>
                                     <constraint firstItem="Bfj-cJ-cKX" firstAttribute="leading" secondItem="w1n-7g-o3t" secondAttribute="leading" id="FPd-RG-h0M"/>
                                     <constraint firstItem="Bfj-cJ-cKX" firstAttribute="top" secondItem="TK0-rK-Ghg" secondAttribute="top" id="cd0-Ai-FNJ"/>
-                                    <constraint firstItem="x5u-jo-bVL" firstAttribute="top" secondItem="w1n-7g-o3t" secondAttribute="top" priority="900" id="iLg-Nm-y2b"/>
                                     <constraint firstItem="Bfj-cJ-cKX" firstAttribute="trailing" secondItem="w1n-7g-o3t" secondAttribute="trailing" id="nRd-Yp-J4w"/>
                                     <constraint firstItem="Bfj-cJ-cKX" firstAttribute="width" secondItem="w1n-7g-o3t" secondAttribute="width" id="uEJ-2w-7Z7"/>
                                     <constraint firstAttribute="bottom" secondItem="Bfj-cJ-cKX" secondAttribute="bottom" id="yo2-DM-ygT"/>
@@ -202,11 +207,22 @@ If you read it until here, congratulations! If you liked the post and by any cha
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TK0-rK-Ghg" secondAttribute="trailing" id="Aim-Nm-gJO"/>
                             <constraint firstItem="TK0-rK-Ghg" firstAttribute="top" secondItem="1Ro-bX-8t1" secondAttribute="top" id="F7G-j2-mvm"/>
+                            <constraint firstItem="x5u-jo-bVL" firstAttribute="top" secondItem="0i3-9h-da6" secondAttribute="top" priority="750" id="ZZO-Bw-eAC"/>
                             <constraint firstItem="TK0-rK-Ghg" firstAttribute="leading" secondItem="1Ro-bX-8t1" secondAttribute="leading" id="bfW-Vt-wFf"/>
                             <constraint firstAttribute="bottom" secondItem="TK0-rK-Ghg" secondAttribute="bottom" id="xWC-Qe-4jY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Unsplash Details" largeTitleDisplayMode="never" id="Wdp-sA-j4C"/>
+                    <connections>
+                        <outlet property="constraintTopProfileView" destination="CSz-1R-0fJ" id="keh-sX-7PK"/>
+                        <outlet property="descriptionLabel" destination="ELN-Bq-HjC" id="wRO-1x-vqw"/>
+                        <outlet property="likeLabel" destination="S6x-1v-jKy" id="DUO-hK-JgX"/>
+                        <outlet property="photoImageView" destination="x5u-jo-bVL" id="KjT-bc-X09"/>
+                        <outlet property="userBioLabel" destination="rt3-BS-8SM" id="dfO-PH-Faj"/>
+                        <outlet property="userFullNameLabel" destination="j25-xo-QUD" id="6er-3B-FKL"/>
+                        <outlet property="userProfilImageView" destination="AyW-dg-iVT" id="jLA-uF-jsM"/>
+                        <outlet property="usernameTookPictureLabel" destination="Fjl-lf-CMm" id="g02-Ti-myC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSB-iX-6YT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -219,9 +235,10 @@ If you read it until here, congratulations! If you liked the post and by any cha
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="cD4-rv-Snj">
                         <rect key="frame" x="0.0" y="44" width="428" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="r3s-EX-2uS" kind="relationship" relationship="rootViewController" id="HSv-MG-CBQ"/>
+                        <segue destination="r3s-EX-2uS" kind="relationship" relationship="rootViewController" id="XlK-h9-ljh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ElQ-nO-rbk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -246,14 +263,17 @@ If you read it until here, congratulations! If you liked the post and by any cha
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tSn-T0-j4R" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="jMQ-Fb-GPl"/>
+                    <navigationItem key="navigationItem" id="jMQ-Fb-GPl">
+                        <barButtonItem key="backBarButtonItem" title=" " id="kOS-cO-9A3"/>
+                    </navigationItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ohn-Xx-kH2">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="5Js-Ih-Puk" kind="relationship" relationship="rootViewController" id="hgQ-LW-ies"/>
+                        <segue destination="5Js-Ih-Puk" kind="relationship" relationship="rootViewController" id="aNr-eX-tpe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8B-vw-3zm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -265,11 +285,17 @@ If you read it until here, congratulations! If you liked the post and by any cha
         <segue reference="KwN-EZ-W7U"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
