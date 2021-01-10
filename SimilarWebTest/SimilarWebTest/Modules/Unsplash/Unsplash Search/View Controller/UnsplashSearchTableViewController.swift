@@ -126,7 +126,9 @@ extension UnsplashSearchTableViewController_UnsplashSearchDataControllerDelegate
     }
     
     func dataControllerShouldResetSelection(_ dataController: UnsplashSearchDataController) {
-        splitViewController?.viewControllers[1] = storyboard!.instantiateViewController(withIdentifier: "DetailNavigationViewController")
+        if splitViewController?.viewControllers.indices.contains(1) == true {
+            splitViewController?.viewControllers[1] = storyboard!.instantiateViewController(withIdentifier: "DetailNavigationViewController")
+        }
         let desiredOffset = CGPoint(x: 0, y: -(tableView.contentInset.top + navigationController!.navigationBar.frame.height + CGFloat(60)))
         tableView.setContentOffset(desiredOffset, animated: true)
         if let indexPathForSelectedRow = tableView.indexPathForSelectedRow {

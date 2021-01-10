@@ -25,10 +25,4 @@ class UnsplashSearchTableViewCell: UITableViewCell {
         
         unsplashImageView.layer.cornerRadius = unsplashImageView.frame.width/2
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        unsplashImageView.image = nil
-    }
 }

@@ -220,7 +220,7 @@
                             <constraint firstAttribute="trailing" secondItem="TK0-rK-Ghg" secondAttribute="trailing" id="Aim-Nm-gJO"/>
                             <constraint firstItem="TK0-rK-Ghg" firstAttribute="top" secondItem="1Ro-bX-8t1" secondAttribute="top" id="F7G-j2-mvm"/>
                             <constraint firstItem="TK0-rK-Ghg" firstAttribute="leading" secondItem="1Ro-bX-8t1" secondAttribute="leading" id="bfW-Vt-wFf"/>
-                            <constraint firstItem="oqZ-0g-CZZ" firstAttribute="top" secondItem="0i3-9h-da6" secondAttribute="top" priority="750" id="bt2-Is-jYf"/>
+                            <constraint firstItem="oqZ-0g-CZZ" firstAttribute="top" secondItem="0i3-9h-da6" secondAttribute="top" priority="900" id="bt2-Is-jYf"/>
                             <constraint firstAttribute="bottom" secondItem="TK0-rK-Ghg" secondAttribute="bottom" id="xWC-Qe-4jY"/>
                         </constraints>
                     </view>
@@ -297,7 +297,7 @@
         <scene sceneID="eKu-7N-6JQ">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Vok-bk-zLQ" customClass="UnsplashDetailsPageViewController" customModule="SimilarWebTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="rxX-I5-tVE"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="rxX-I5-tVE"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKe-lZ-K7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
