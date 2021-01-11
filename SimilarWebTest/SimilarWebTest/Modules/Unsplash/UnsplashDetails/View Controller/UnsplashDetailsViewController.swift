@@ -25,8 +25,7 @@ class UnsplashDetailsViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         if let unsplashPhoto = unsplashPhoto {
-            photoImageView.sd_setImage(with: unsplashPhoto.urls[.small]) // from cache
-            photoImageView.sd_setImage(with: unsplashPhoto.urls[.regular])
+            photoImageView.sd_setImage(with: unsplashPhoto.urls[.regular], placeholderImage: UIImage(blurHash: unsplashPhoto.blurHash, size: CGSize(width: 32, height: 32)))
             descriptionLabel.text = unsplashPhoto.description
             userProfilImageView.sd_setImage(with: unsplashPhoto.user.profileImage[.large])
             userFullNameLabel.text = unsplashPhoto.user.displayName
@@ -45,8 +44,11 @@ class UnsplashDetailsViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func adjusteParallaxViewHeight() {
-        let idealHeightForHeaderView = photoImageView.image?.getHeightKeepingRatioByWidth(photoImageView.frame.width)
-        constraintTopProfileView.constant = min(idealHeightForHeaderView ?? view.frame.midY, view.frame.midY)
+        guard let unsplashPhoto = unsplashPhoto else { return }
+        let ratio = CGFloat(unsplashPhoto.width)/CGFloat(unsplashPhoto.height)
+        let idealHeightForHeaderView = photoImageView.frame.width/ratio
+        print(idealHeightForHeaderView)
+        constraintTopProfileView.constant = min(idealHeightForHeaderView, view.frame.midY)
     }
 }
 
